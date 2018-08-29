@@ -3,6 +3,7 @@ package com.githubapp.di.module
 import com.githubapp.api.GithubApi
 import com.githubapp.ui.login.LoginManager
 import com.githubapp.di.scope.ActivityScope
+import com.githubapp.ui.login.ILoginPresenter
 import com.githubapp.ui.login.LoginPresenter
 import dagger.Module
 import dagger.Provides
@@ -11,7 +12,7 @@ import dagger.Provides
 class LoginModule {
     @Provides
     @ActivityScope
-    fun provideLoginPresenter(loginManager: LoginManager): LoginPresenter{
+    fun provideLoginPresenter(loginManager: LoginManager): ILoginPresenter {
         return LoginPresenter(loginManager)
     }
 }

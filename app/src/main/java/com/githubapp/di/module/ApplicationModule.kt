@@ -55,6 +55,4 @@ class ApplicationModule() {
     fun provideTokenManager(context: Context, githubApi: GithubApi): LoginManager {
         return LoginManager(context, githubApi)
     }
-
-
 }

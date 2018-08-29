@@ -3,6 +3,7 @@ package com.githubapp.di.module
 import com.githubapp.data.source.DataSource
 import com.githubapp.di.scope.ActivityScope
 import com.githubapp.ui.splash.SplashPresenter
+import com.githubapp.ui.user.IUserPresenter
 import com.githubapp.ui.user.UserPresenter
 import dagger.Module
 import dagger.Provides
@@ -11,7 +12,7 @@ import dagger.Provides
 class UserModule {
     @Provides
     @ActivityScope
-    fun provideUserPresenter(dataSource: DataSource): UserPresenter{
+    fun provideUserPresenter(dataSource: DataSource): IUserPresenter {
         return UserPresenter(dataSource)
     }
 }
