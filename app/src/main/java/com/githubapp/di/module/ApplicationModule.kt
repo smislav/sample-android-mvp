@@ -2,10 +2,12 @@ package com.githubapp.di.module
 
 import android.app.Application
 import android.content.Context
+import android.preference.PreferenceManager
 import com.githubapp.api.GithubApi
 import com.githubapp.data.source.DataSource
 import com.githubapp.data.source.remote.RemoteDataSource
 import com.githubapp.ui.login.LoginManager
+import com.githubapp.ui.login.LoginPreferences
 import dagger.Module
 import dagger.Provides
 import retrofit2.Retrofit
@@ -39,8 +41,7 @@ class ApplicationModule() {
 
     @Provides
     @Singleton
-    fun provideRemoteDataSource(githubService: GithubApi,
-                                loginManager: LoginManager): RemoteDataSource {
+    fun provideRemoteDataSource(githubService: GithubApi, loginManager: LoginManager): RemoteDataSource {
         return RemoteDataSource(githubService, loginManager)
     }
 
@@ -50,9 +51,16 @@ class ApplicationModule() {
         return DataSource(remoteDataSource)
     }
 
+
     @Provides
     @Singleton
-    fun provideTokenManager(context: Context, githubApi: GithubApi): LoginManager {
-        return LoginManager(context, githubApi)
+    fun provideLoginPreferences(context: Context): LoginPreferences{
+        return LoginPreferences(PreferenceManager.getDefaultSharedPreferences(context))
+    }
+
+    @Provides
+    @Singleton
+    fun provideLoginManager(context: Context, api: GithubApi, preferences: LoginPreferences): LoginManager {
+        return LoginManager(context, api, preferences)
     }
 }

@@ -9,25 +9,25 @@ import io.reactivex.Observable
 import javax.inject.Inject
 
 class RemoteDataSource : IDataSource{
-    var mGithubService : GithubApi
-    var mLoginManager : LoginManager
+    var api : GithubApi
+    var loginManager : LoginManager
 
     @Inject
-    constructor(githubService: GithubApi, loginManager: LoginManager){
-        mGithubService = githubService
-        mLoginManager = loginManager
+    constructor(api: GithubApi, loginManager: LoginManager){
+        this.api = api
+        this.loginManager = loginManager
     }
 
     override fun getRepos(page: Int, query: String, sort: String): Observable<List<Repo>> {
-        return mGithubService.getRepos(page, query, sort, mLoginManager.getAuthorization().token)
+        return api.getRepos(page, query, sort, loginManager.token())
                 .map { it -> it.items }
     }
 
     override fun getRepo(username: String, repoName: String): Observable<Repo> {
-        return mGithubService.getRepo(username, repoName, mLoginManager.getAuthorization().token)
+        return api.getRepo(username, repoName, loginManager.token())
     }
 
     override fun getUser(username: String): Observable<User> {
-        return mGithubService.getUser(username, mLoginManager.getAuthorization().token)
+        return api.getUser(username, loginManager.token())
     }
 }

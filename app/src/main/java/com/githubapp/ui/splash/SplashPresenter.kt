@@ -13,8 +13,8 @@ class SplashPresenter() : BasePresenter<ISplashView>(), ISplashPresenter {
     }
 
     override fun checkLogin() {
-        val authorization = loginManager.getAuthorization()
-        if(authorization.isAuthorized()){
+        val logged = loginManager.isLogged()
+        if(logged){
             getView()?.navigateToMain()
         }else{
             getView()?.navigateToLogin()

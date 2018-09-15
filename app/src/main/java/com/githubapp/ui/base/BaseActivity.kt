@@ -9,7 +9,7 @@ import javax.inject.Inject
 
 abstract class BaseActivity : AppCompatActivity(), IBaseView {
     @Inject
-    lateinit var mLoginManager: LoginManager
+    lateinit var loginManager: LoginManager
 
     override fun errorNetwork() {
         Toast.makeText(this, "No internet connection", Toast.LENGTH_LONG).show()
@@ -20,7 +20,7 @@ abstract class BaseActivity : AppCompatActivity(), IBaseView {
     }
 
     override fun errorAccess() {
-        mLoginManager.logout()
+        loginManager.logout()
         startActivity(this, SplashActivity::class.java, clear = true)
     }
 
