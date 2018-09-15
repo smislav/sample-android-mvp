@@ -31,6 +31,9 @@ android {
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
 
+    // Support
+    implementation 'com.android.support:support-v4:27.1.1'
+
     // AppCompat
     implementation 'com.android.support:appcompat-v7:27.1.1'
 
@@ -52,6 +55,7 @@ dependencies {
     // Dagger
     implementation 'com.google.dagger:dagger:2.17'
     implementation 'com.google.dagger:dagger-android:2.17'
+    implementation 'com.google.dagger:dagger-android-support:2.17'
     kapt "com.google.dagger:dagger-compiler:2.17"
     kapt "com.google.dagger:dagger-android-processor:2.17"
 
