@@ -46,6 +46,6 @@ class LoginActivity : BaseActivity(), ILoginView {
     }
 
     override fun loginFailed() {
-        Toast.makeText(this, "Wrong username or password.", Toast.LENGTH_LONG).show()
+        Toast.makeText(this, getString(R.string.message_wrong_credentials), Toast.LENGTH_LONG).show()
     }
 }
