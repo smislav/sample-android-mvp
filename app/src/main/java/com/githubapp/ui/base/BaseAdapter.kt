@@ -1,6 +1,6 @@
 package com.githubapp.ui.base
 
-import android.support.v7.widget.RecyclerView
+import androidx.recyclerview.widget.RecyclerView
 
 abstract class BaseAdapter<I, VH: RecyclerView.ViewHolder> :  RecyclerView.Adapter<VH>(){
     var items: ArrayList<I> = ArrayList()

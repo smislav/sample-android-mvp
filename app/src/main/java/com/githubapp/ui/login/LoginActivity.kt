@@ -1,7 +1,7 @@
 package com.githubapp.ui.login
 
 import android.os.Bundle
-import android.support.constraint.ConstraintLayout
+import androidx.constraintlayout.widget.ConstraintLayout
 import android.view.View
 import android.widget.Button
 import android.widget.EditText

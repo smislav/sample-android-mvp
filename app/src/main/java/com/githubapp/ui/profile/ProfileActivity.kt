@@ -1,7 +1,6 @@
 package com.githubapp.ui.profile
 
 import android.os.Bundle
-import android.support.design.widget.CoordinatorLayout
 import android.view.View
 import android.widget.Button
 import android.widget.FrameLayout

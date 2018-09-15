@@ -1,6 +1,6 @@
 package com.githubapp.ui.base
 
-import android.support.v7.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatActivity
 import android.widget.Toast
 import com.githubapp.ui.login.LoginManager
 import com.githubapp.ui.splash.SplashActivity

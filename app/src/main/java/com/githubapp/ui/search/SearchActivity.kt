@@ -1,10 +1,13 @@
 package com.githubapp.ui.search
 
 import android.os.Bundle
-import android.support.v4.widget.SwipeRefreshLayout
-import android.support.v7.widget.*
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import android.widget.RadioButton
 import android.widget.RadioGroup
+import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.OrientationHelper
+import androidx.recyclerview.widget.RecyclerView
 import butterknife.BindView
 import butterknife.ButterKnife
 import butterknife.OnClick

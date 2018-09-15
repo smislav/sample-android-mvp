@@ -1,7 +1,6 @@
 package com.githubapp.ui.repository
 
 import android.os.Bundle
-import android.support.design.widget.CoordinatorLayout
 import android.view.View
 import android.widget.*
 import butterknife.BindView
