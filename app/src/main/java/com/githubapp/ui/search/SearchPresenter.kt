@@ -13,20 +13,20 @@ import javax.inject.Singleton
 
 @Singleton
 class SearchPresenter() : BasePresenter<ISearchView>(), ISearchPresenter {
-    private lateinit var mDataSource: DataSource
+    private lateinit var dataSource: DataSource
 
     @Inject
     constructor(dataSource: DataSource) : this() {
-        mDataSource = dataSource
+        this.dataSource = dataSource
     }
 
     override fun loadRepos(page: Int, query: String, sort: Int, clear: Boolean) {
         var query: String = query
         if(query.isBlank())
             query = "a"
-        // Load repos
+
         getView()?.showLoading()
-        mDataSource.getRepos(page,query, Sort.findByID(sort)!!.value)
+        dataSource.getRepos(page,query, Sort.findByID(sort)!!.value)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(object: SimpleCallbackWrapper<List<Repo>>(){

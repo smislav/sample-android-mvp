@@ -44,7 +44,7 @@
                     app:layout_scrollFlags="scroll">
 
                     <ImageView
-                        android:id="@+id/image_user"
+                        android:id="@+id/imageUser"
                         android:layout_width="100dp"
                         android:layout_height="100dp"
                         android:layout_marginBottom="48dp"
@@ -54,7 +54,7 @@
                         app:layout_constraintTop_toTopOf="parent" />
 
                     <TextView
-                        android:id="@+id/text_username"
+                        android:id="@+id/textUsername"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="8dp"
@@ -68,10 +68,10 @@
                         android:textSize="16sp"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/image_user" />
+                        app:layout_constraintTop_toBottomOf="@+id/imageUser" />
 
                     <Button
-                        android:id="@+id/button_view"
+                        android:id="@+id/buttonView"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="8dp"
@@ -83,7 +83,7 @@
                         android:theme="@android:style/ThemeOverlay.Material.Dark"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/text_username" />
+                        app:layout_constraintTop_toBottomOf="@+id/textUsername" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <LinearLayout
@@ -105,7 +105,7 @@
                         android:textSize="16sp" />
 
                     <TextView
-                        android:id="@+id/info_name"
+                        android:id="@+id/infoName"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
@@ -135,7 +135,7 @@
                         android:textSize="16sp" />
 
                     <TextView
-                        android:id="@+id/info_desc"
+                        android:id="@+id/infoDesc"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
@@ -164,7 +164,7 @@
                         android:textSize="16sp" />
 
                     <TextView
-                        android:id="@+id/info_watchers"
+                        android:id="@+id/infoWatchers"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
@@ -194,7 +194,7 @@
                         android:textSize="16sp" />
 
                     <TextView
-                        android:id="@+id/info_forks"
+                        android:id="@+id/infoForks"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
@@ -223,7 +223,7 @@
                         android:textSize="16sp" />
 
                     <TextView
-                        android:id="@+id/info_issues"
+                        android:id="@+id/infoIssues"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
@@ -252,7 +252,7 @@
                         android:textSize="16sp" />
 
                     <TextView
-                        android:id="@+id/info_date"
+                        android:id="@+id/infoDate"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_weight="1"

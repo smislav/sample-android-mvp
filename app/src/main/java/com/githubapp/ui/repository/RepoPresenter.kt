@@ -9,16 +9,16 @@ import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 
 class RepoPresenter() : BasePresenter<IRepoView>(), IRepoPresenter {
-    private lateinit var mDataSource: DataSource
+    private lateinit var dataSource: DataSource
 
     @Inject
     constructor(dataSource: DataSource) : this() {
-        mDataSource = dataSource
+        this.dataSource = dataSource
     }
 
     override fun getRepo(username: String, repoName: String) {
         getView()?.showLoading()
-        mDataSource.getRepo(username, repoName)
+        dataSource.getRepo(username, repoName)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(object: SimpleCallbackWrapper<Repo>(){

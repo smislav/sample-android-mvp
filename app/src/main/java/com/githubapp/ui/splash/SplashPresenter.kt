@@ -5,15 +5,15 @@ import com.githubapp.ui.login.LoginManager
 import javax.inject.Inject
 
 class SplashPresenter() : BasePresenter<ISplashView>(), ISplashPresenter {
-    private lateinit var mLoginManager: LoginManager;
+    private lateinit var loginManager: LoginManager;
 
     @Inject
     constructor(loginManager: LoginManager): this(){
-        mLoginManager = loginManager
+        this.loginManager = loginManager
     }
 
     override fun checkLogin() {
-        val authorization = mLoginManager.getAuthorization()
+        val authorization = loginManager.getAuthorization()
         if(authorization.isAuthorized()){
             getView()?.navigateToMain()
         }else{

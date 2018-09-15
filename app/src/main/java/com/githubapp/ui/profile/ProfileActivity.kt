@@ -2,12 +2,6 @@ package com.githubapp.ui.profile
 
 import android.os.Bundle
 import android.view.View
-import android.widget.Button
-import android.widget.FrameLayout
-import android.widget.ImageView
-import android.widget.TextView
-import butterknife.BindView
-import butterknife.ButterKnife
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.githubapp.R
@@ -16,80 +10,41 @@ import com.githubapp.ui.base.BaseActivity
 import com.githubapp.ui.splash.SplashActivity
 import com.githubapp.utils.startActivity
 import dagger.android.AndroidInjection
+import kotlinx.android.synthetic.main.activity_profile.*
 import javax.inject.Inject
 
 class ProfileActivity : BaseActivity(), IProfileView {
-    @Inject
-    lateinit var mPresenter: ProfilePresenter
-
-    @BindView(R.id.image_user)
-    lateinit var mAvatar: ImageView
-
-    @BindView(R.id.text_username)
-    lateinit var mTitle: TextView
-
-    @BindView(R.id.button_logout)
-    lateinit var mView: Button
-
-    @BindView(R.id.info_name)
-    lateinit var mName: TextView
-
-    @BindView(R.id.info_bio)
-    lateinit var mBio: TextView
-
-    @BindView(R.id.info_email)
-    lateinit var mEmail: TextView
-
-    @BindView(R.id.info_location)
-    lateinit var mLocation: TextView
-
-    @BindView(R.id.info_company)
-    lateinit var mCompany: TextView
-
-    @BindView(R.id.info_username)
-    lateinit var mUsername: TextView
-
-    @BindView(R.id.info_type)
-    lateinit var mType: TextView
-
-    @BindView(R.id.progress)
-    lateinit var mProgress: FrameLayout
-
-    @BindView(R.id.content)
-    lateinit var mContent: FrameLayout
+    @Inject lateinit var presenter: ProfilePresenter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         AndroidInjection.inject(this)
 
         super.onCreate(savedInstanceState)
-
         setContentView(R.layout.activity_profile)
 
-        ButterKnife.bind(this)
-
-        mPresenter.attachView(this)
-        mPresenter.getAuthenticatedUser()
+        presenter.attachView(this)
+        presenter.getAuthenticatedUser()
     }
 
     override fun loadUser(user: User) {
         Glide   .with(applicationContext)
                 .load(user.image)
                 .apply(RequestOptions.circleCropTransform())
-                .into(mAvatar)
+                .into(imageUser)
 
-        mTitle.text = user.username
+        textUsername.text = user.username
 
-        mView.setOnClickListener{
-           mPresenter.logout()
+        buttonLogout.setOnClickListener{
+           presenter.logout()
         }
 
-        mName.text = user.name
-        mBio.text = user.bio
-        mEmail.text = user.email
-        mLocation.text = user.location
-        mCompany.text = user.company
-        mUsername.text = user.username
-        mType.text = user.type
+        infoName.text = user.name
+        infoBio.text = user.bio
+        infoEmail.text = user.email
+        infoLocation.text = user.location
+        infoCompany.text = user.company
+        infoUsername.text = user.username
+        infoType.text = user.type
     }
 
     override fun navigateToSplash() {
@@ -97,12 +52,12 @@ class ProfileActivity : BaseActivity(), IProfileView {
     }
 
     override fun showLoading() {
-        mProgress.visibility = View.VISIBLE
-        mContent.visibility = View.GONE
+        progress.visibility = View.VISIBLE
+        content.visibility = View.GONE
     }
 
     override fun hideLoading() {
-        mProgress.visibility = View.GONE
-        mContent.visibility = View.VISIBLE
+        progress.visibility = View.GONE
+        content.visibility = View.VISIBLE
     }
 }

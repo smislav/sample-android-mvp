@@ -6,16 +6,16 @@ import com.githubapp.ui.login.LoginManager
 import javax.inject.Inject
 
 class ProfilePresenter() : BasePresenter<IProfileView>(), IProfilePresenter {
-    private lateinit var mLoginManager: LoginManager
+    private lateinit var loginManager: LoginManager
 
     @Inject
     constructor(loginManager: LoginManager) : this() {
-        mLoginManager = loginManager
+        this.loginManager = loginManager
     }
 
     override fun getAuthenticatedUser() {
         getView()?.showLoading()
-        mLoginManager.getUser(object : LoginManager.UserListener{
+        loginManager.getUser(object : LoginManager.UserListener{
             override fun onUserRetrieved(user: User) {
                 getView()?.loadUser(user)
                 getView()?.hideLoading()
@@ -41,7 +41,7 @@ class ProfilePresenter() : BasePresenter<IProfileView>(), IProfilePresenter {
 
 
     override fun logout() {
-        mLoginManager.logout()
+        loginManager.logout()
         getView()?.navigateToSplash()
     }
 }

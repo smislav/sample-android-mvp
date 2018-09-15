@@ -8,8 +8,7 @@ import dagger.android.HasActivityInjector
 import javax.inject.Inject
 
 class GithubApp() : Application(), HasActivityInjector {
-    @Inject
-    lateinit var mActivityInjector: DispatchingAndroidInjector<Activity>
+    @Inject lateinit var activityInjector: DispatchingAndroidInjector<Activity>
 
     override fun onCreate() {
         super.onCreate()
@@ -20,5 +19,5 @@ class GithubApp() : Application(), HasActivityInjector {
                 .inject(this)
     }
 
-    override fun activityInjector(): DispatchingAndroidInjector<Activity> = mActivityInjector
+    override fun activityInjector(): DispatchingAndroidInjector<Activity> = activityInjector
 }

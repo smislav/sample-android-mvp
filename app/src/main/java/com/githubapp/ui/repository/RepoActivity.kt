@@ -2,9 +2,6 @@ package com.githubapp.ui.repository
 
 import android.os.Bundle
 import android.view.View
-import android.widget.*
-import butterknife.BindView
-import butterknife.ButterKnife
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.githubapp.R
@@ -13,90 +10,54 @@ import com.githubapp.ui.base.BaseActivity
 import com.githubapp.ui.search.SearchActivity
 import com.githubapp.utils.startBrowser
 import dagger.android.AndroidInjection
+import kotlinx.android.synthetic.main.activity_repo.*
 import java.text.DateFormat
 import javax.inject.Inject
 
 class RepoActivity : BaseActivity(), IRepoView {
-    @Inject
-    lateinit var mPresenter: RepoPresenter;
-
-    @BindView(R.id.image_user)
-    lateinit var mAvatar: ImageView
-
-    @BindView(R.id.text_username)
-    lateinit var mTitle: TextView
-
-    @BindView(R.id.button_view)
-    lateinit var mView: Button
-
-    @BindView(R.id.info_name)
-    lateinit var mName: TextView
-
-    @BindView(R.id.info_desc)
-    lateinit var mDescription: TextView
-
-    @BindView(R.id.info_watchers)
-    lateinit var mWatchers: TextView
-
-    @BindView(R.id.info_forks)
-    lateinit var mForks: TextView
-
-    @BindView(R.id.info_issues)
-    lateinit var mIssues: TextView
-
-    @BindView(R.id.info_date)
-    lateinit var mDate: TextView
-
-    @BindView(R.id.progress)
-    lateinit var mProgress: FrameLayout
-
-    @BindView(R.id.content)
-    lateinit var mContent: FrameLayout
+    @Inject lateinit var presenter: RepoPresenter;
 
     override fun onCreate(savedInstanceState: Bundle?) {
         AndroidInjection.inject(this)
 
         super.onCreate(savedInstanceState)
-
         setContentView(R.layout.activity_repo)
 
-        ButterKnife.bind(this)
-
-        mPresenter.attachView(this)
-        mPresenter.getRepo(
-                intent.extras.getString(SearchActivity.EXTRA_USER),
-                intent.extras.getString(SearchActivity.EXTRA_REPO))
+        presenter.attachView(this)
+        presenter.getRepo(
+                intent.extras?.getString(SearchActivity.EXTRA_USER)!!,
+                intent.extras?.getString(SearchActivity.EXTRA_REPO)!!)
 
     }
 
     override fun loadRepo(repo: Repo) {
-        Glide   .with(applicationContext)
+        Glide   .with(this)
                 .load(repo.user.image)
                 .apply(RequestOptions.circleCropTransform())
-                .into(mAvatar)
+                .into(imageUser)
 
-        mTitle.text = repo.user.username
+        textUsername.text = repo.user.username
 
-        mView.setOnClickListener{
+        buttonView.setOnClickListener{
             startBrowser(applicationContext, repo.url)
         }
 
-        mName.text = repo.name
-        mDescription.text = repo.description
-        mWatchers.text = repo.watchers.toString()
-        mForks.text = repo.forks.toString()
-        mIssues.text = repo.issues.toString()
-        mDate.text = DateFormat.getDateInstance()
+        infoName.text = repo.name
+        infoDesc.text = repo.description
+        infoWatchers.text = repo.watchers.toString()
+        infoForks.text = repo.forks.toString()
+        infoIssues.text = repo.issues.toString()
+        infoDate.text = DateFormat.getDateInstance()
                 .format(repo.date)
     }
 
     override fun showLoading() {
-        mProgress.visibility = View.VISIBLE
-        mContent.visibility = View.GONE
+        progress.visibility = View.VISIBLE
+        content.visibility = View.GONE
     }
 
     override fun hideLoading() {
-        mProgress.visibility = View.GONE
-        mContent.visibility = View.VISIBLE
+        progress.visibility = View.GONE
+        content.visibility = View.VISIBLE
     }
 }

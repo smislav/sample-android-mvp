@@ -5,16 +5,16 @@ import javax.inject.Inject
 
 
 class LoginPresenter() : BasePresenter<ILoginView>(), ILoginPresenter {
-    private lateinit var mLoginManager: LoginManager
+    private lateinit var loginManager: LoginManager
 
     @Inject
     constructor(loginManager: LoginManager): this(){
-        mLoginManager = loginManager
+        this.loginManager = loginManager
     }
 
     override fun login(email: String, password: String) {
         getView()?.showLoading()
-        mLoginManager.login(email, password, object : LoginManager.LoginListener{
+        loginManager.login(email, password, object : LoginManager.LoginListener{
             override fun onLoginSucceeded() {
                 getView()?.loginSucceeded()
                 getView()?.hideLoading()

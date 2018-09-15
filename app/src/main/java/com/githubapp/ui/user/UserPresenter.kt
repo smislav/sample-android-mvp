@@ -9,16 +9,16 @@ import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 
 class UserPresenter() : BasePresenter<IUserView>(), IUserPresenter {
-    private lateinit var mDataSource: DataSource
+    private lateinit var dataSource: DataSource
 
     @Inject
     constructor(dataSource: DataSource) : this() {
-        mDataSource = dataSource
+        this.dataSource = dataSource
     }
 
     override fun getUser(username: String) {
         getView()?.showLoading()
-        mDataSource.getUser(username)
+        dataSource.getUser(username)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(object: SimpleCallbackWrapper<User>(){
