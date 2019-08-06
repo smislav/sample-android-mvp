@@ -8,4 +8,5 @@ Project is written in Kotlin and is using MVP architecture in combination with A
 - Offline mode
 - DataBinding
 - Testing
-
+- Koin
+- Coroutines
